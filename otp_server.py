@@ -4,8 +4,7 @@ import smtplib
 import random
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import threading
-import time
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for Flutter web
@@ -212,7 +211,8 @@ def health_check():
 
 def run_server():
     """Run the Flask server"""
-    app.run(host='127.0.0.1', port=5000, debug=False)
+    port = int(os.environ.get("PORT", 5000))  # Use Render's assigned port
+    app.run(host="0.0.0.0", port=port)  
 
 if __name__ == '__main__':
     print("Starting SHIFFTERS OTP Server...")
