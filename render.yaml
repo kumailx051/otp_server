@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: otp-server
+    env: python
+    region: oregon  # You can change to your preferred region
+    buildCommand: pip install -r requirements.txt
+    startCommand: python otp_server.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+    plan: free
